@@ -8,12 +8,14 @@ describe(UniqueIdService.name, () => {
     service = new UniqueIdService();
   });
 
-  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should generated id when called with prefix`, () => {
+  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name}
+    should generated id when called with prefix`, () => {
     const id = service.generateUniqueIdWithPrefix(prefix);
     expect(id.startsWith(`${prefix}-`)).toBeTrue();
   });
 
-  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should not generate duplicate IDs when called multiple times`, () => {
+  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name}
+    should not generate duplicate IDs when called multiple times`, () => {
     const ids = new Set();
     const numbersOfIds = 50;
     for (let x = 1; x <= numbersOfIds; x++) {
@@ -22,9 +24,17 @@ describe(UniqueIdService.name, () => {
     expect(ids.size).toBe(numbersOfIds);
   });
 
-  it(`#${UniqueIdService.prototype.getNumberOfGeneredUniqueIds.name} should return the numbers of generatedIds when called`, () => {
+  it(`#${UniqueIdService.prototype.getNumberOfGeneredUniqueIds.name}
+    should return the numbers of generatedIds when called`, () => {
     service.generateUniqueIdWithPrefix(prefix);
     service.generateUniqueIdWithPrefix(prefix);
     expect(service.getNumberOfGeneredUniqueIds()).toBe(2);
+  });
+
+  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name}
+    should throw when called with empty`, () => {
+    ['', '1', '0'].forEach((value) =>
+      expect(() => service.generateUniqueIdWithPrefix(value)).toThrow()
+    );
   });
 });
