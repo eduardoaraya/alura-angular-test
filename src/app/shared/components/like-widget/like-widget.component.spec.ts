@@ -22,13 +22,13 @@ describe(`${LikeWidgetComponent.name}`, () => {
     expect(component).toBeTruthy();
   });
 
-  it(`#${LikeWidgetComponent.prototype.ngOnInit}
+  it(`#${LikeWidgetComponent.prototype.ngOnInit.name}
     should auto-generate Id during ngOnInit when (@Input id) is not assigned`, () => {
     fixture.detectChanges();
     expect(component.id).toBeTruthy();
   });
 
-  it(`#${LikeWidgetComponent.prototype.ngOnInit}
+  it(`#${LikeWidgetComponent.prototype.ngOnInit.name}
     should NOT auto-generate Id during ngOnInit when (@Input id) is assigned`, () => {
     const someId = 'some-id';
     component.id = someId;
