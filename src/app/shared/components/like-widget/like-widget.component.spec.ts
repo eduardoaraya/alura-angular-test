@@ -4,7 +4,8 @@ import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 import LikeWidgetComponent from './like-widget.component';
 
 describe(`${LikeWidgetComponent.name}`, () => {
-  let fixtute: ComponentFixture<LikeWidgetComponent>;
+  let fixture: ComponentFixture<LikeWidgetComponent>;
+  let component: LikeWidgetComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -13,11 +14,33 @@ describe(`${LikeWidgetComponent.name}`, () => {
       imports: [FontAwesomeModule],
     }).compileComponents();
 
-    fixtute = TestBed.createComponent(LikeWidgetComponent);
+    fixture = TestBed.createComponent(LikeWidgetComponent);
+    component = fixture.componentInstance;
   });
 
-  it(`Should create component`, () => {
-    const instance = fixtute.componentInstance;
-    expect(instance).toBeTruthy();
+  it(`#${LikeWidgetComponent.name} should create component`, () => {
+    expect(component).toBeTruthy();
+  });
+
+  it(`#${LikeWidgetComponent.prototype.ngOnInit}
+    should auto generate ID when id input property is missing`, () => {
+    fixture.detectChanges();
+    expect(component.id).toBeTruthy();
+  });
+
+  it(`#${LikeWidgetComponent.prototype.ngOnInit}
+    should auto generate ID when id input property is missing`, () => {
+    const someId = 'some-id';
+    component.id = someId;
+    fixture.detectChanges();
+    expect(component.id).toBe(someId);
+  });
+
+  it(`#${LikeWidgetComponent.prototype.like.name}
+    should trigger emission when called`, () => {
+    spyOn(component.liked, 'emit');
+    fixture.detectChanges();
+    component.like();
+    expect(component.liked.emit).toHaveBeenCalled();
   });
 });
