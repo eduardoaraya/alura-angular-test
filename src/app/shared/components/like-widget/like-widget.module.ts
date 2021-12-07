@@ -7,7 +7,7 @@ import LikeWidgetComponent from './like-widget.component';
 @NgModule({
   declarations: [LikeWidgetComponent],
   imports: [CommonModule, FontAwesomeModule],
-  exports: [],
+  exports: [LikeWidgetComponent],
   providers: [UniqueIdService],
 })
 export default class LikeWidgetModule {}
